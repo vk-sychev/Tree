@@ -25,7 +25,6 @@ type
     seNumber: TSpinEdit;
     Label1: TLabel;
     edtRes: TEdit;
-    pnl1: TPanel;
     pnl2: TPanel;
     procedure btnRandomClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
@@ -53,6 +52,9 @@ implementation
 procedure TFMain.FormCreate(Sender: TObject);
 begin
   IsCreated:=False;
+  btnI.Enabled:=false;
+  btnR.Enabled:=false;
+  btnClear.Enabled:=False;
 end;
 
 { При нажатии на кнопку создать рандомную }
@@ -61,6 +63,9 @@ begin
   A:=TTree.BuildRandom(seSize.Value);
   A.View(TV);
   IsCreated:=True;
+  btnI.Enabled:=true;
+  btnR.Enabled:=true;
+  btnClear.Enabled:=true;
 end;
 
 {При нажатии на кнопку очистить }
@@ -70,6 +75,9 @@ begin
   edtRes.Text:='';
   A.Destroy;
   IsCreated:=False;
+  btnI.Enabled:=false;
+  btnR.Enabled:=false;
+  btnClear.Enabled:=False;
 end;
 
 { При изменении размера дерева}
@@ -89,13 +97,15 @@ end;
 { При нажатии на кнопку итеративного решения}
 procedure TFMain.btnIClick(Sender: TObject);
 begin
-  edtRes.Text:=IntToStr(A.CountI(seNumber.Value));
+  if IsCreated then
+    edtRes.Text:=IntToStr(A.CountI(seNumber.Value));
 end;
 
 { При нажатии на кнопку  рекурсивного решения}
 procedure TFMain.btnRClick(Sender: TObject);
 begin
-  edtRes.Text:=IntToStr(A.CountR(seNumber.Value));
+  if IsCreated then
+    edtRes.Text:=IntToStr(A.CountR(seNumber.Value));
 end;
 
 end.
