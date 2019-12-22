@@ -25,6 +25,8 @@ type
     seNumber: TSpinEdit;
     Label1: TLabel;
     edtRes: TEdit;
+    pnl1: TPanel;
+    pnl2: TPanel;
     procedure btnRandomClick(Sender: TObject);
     procedure btnClearClick(Sender: TObject);
     procedure FormCreate(Sender: TObject);
